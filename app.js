@@ -37,6 +37,11 @@ const getLocations = () => {
   })
 }
 
+NEXT:
+  --CLEAN UP FUNCTIONALITY:
+  ADD BUTTONS THAT WILL GET LOCATIONS OF EACH AMMENITY AND USE THE SAME get locations function.
+  --ADD STYLING. 
+
 $(() => {
   /////------------map
   // initMap()
