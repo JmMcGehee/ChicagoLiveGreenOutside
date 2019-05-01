@@ -50,6 +50,10 @@ function initMap () {
 }
 
 const setMarkers = (api) => {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat: 41.8339037, lng: -87.8720466},
+    zoom: 10
+  });
   $.ajax({
     url: api.getQueryUrl()
   }).then((reportData) => {
@@ -60,6 +64,13 @@ const setMarkers = (api) => {
       })
     }
   })
+}
+
+const resetMap = () => {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat: 41.8339037, lng: -87.8720466},
+    zoom: 10
+  });
 }
 
 
@@ -76,6 +87,9 @@ $(() => {
   })
   $('#farmers-markets').on('click', () => {
     setMarkers(farmersMarkets);
+  })
+  $('#reset').on('click', () => {
+    resetMap();
   })
   /////------location data
   // getLocations();
