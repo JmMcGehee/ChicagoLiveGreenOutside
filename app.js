@@ -49,21 +49,34 @@ function initMap () {
   });
 }
 
-$.ajax({
-  url: bikeRacks.getQueryUrl()
-}).then((reportData) => {
-  for (let i = 0; i < reportData.length; i++) {
-    let marker = new google.maps.Marker({
-      position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
-      map: map
-    })
-  }
-}) //oh my fucking god! It works!
+const setMarkers = (api) => {
+  $.ajax({
+    url: api.getQueryUrl()
+  }).then((reportData) => {
+    for (let i = 0; i < reportData.length; i++) {
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+        map: map
+      })
+    }
+  })
+}
+
 
 
 
 $(() => {
   // initMap();//looks like the callback needs to stay on the API script.
+  // setMarkers(bikeRacks)//works to call a marker function based on button clicked
+  $('#bike-racks').on('click', () => {
+    setMarkers(bikeRacks);
+  })
+  $('#green-roofs').on('click', () => {
+    setMarkers(greenRoofs);
+  })
+  $('#farmers-markets').on('click', () => {
+    setMarkers(farmersMarkets);
+  })
   /////------location data
   // getLocations();
   // console.log(bikeRacks);//k, works

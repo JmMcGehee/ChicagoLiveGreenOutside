@@ -21,11 +21,12 @@ Querying API location data and visualizing it with Google.maps.
 
   - Query items in city API to get latitude/longitude.
   - Load google map
-    - Vanilla javascript used with google.maps script. 
+    - Vanilla javascript used with google.maps script.
     - Add data points to map.
 
 Button functions:
   - When clicked, get locations of button item named.
+  - A function takes a parameter of a class instance that is the specific API. 
 
 Farmer's markets:
   - Unique websites sometimes available.
