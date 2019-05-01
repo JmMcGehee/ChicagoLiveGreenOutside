@@ -17,7 +17,8 @@ class API {
     return this.baseURL + this.uniqueID + `.json`
   }
   getQueryUrl () {
-    return this.getAPIUrl() + '?' + this.limit(10);
+    return this.getAPIUrl() + '?'
+    // + this.limit(10);
   }
   getLocations () {
     $.ajax({
