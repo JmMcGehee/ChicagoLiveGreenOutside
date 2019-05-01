@@ -62,6 +62,9 @@ const setMarkers = (api) => {
         position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
         map: map
       })
+      // marker.on('click', (event) => {
+      //   console.log($event.target);
+      // })// not working
     }
   })
 }
