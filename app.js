@@ -1,7 +1,6 @@
 console.log("LiveGreenOutdoorsChicago");
 
 /////////////// -------------- Loading map.
-
 // let map;
 // const initMap = () => {
 //   map = new google.maps.Map($('#map'), {
@@ -10,42 +9,60 @@ console.log("LiveGreenOutdoorsChicago");
 //   });
 // }
 
+
 ////////////////// ------------- Querying locations
 
-//Can I query by location to get lat/long?
+//   --ADD STYLING.
 
-//set base query
-const baseUrl = `https://data.cityofchicago.org/resource/cbyb-69xx.json`
-let queryType = `rackid`
-
-//set limit on how many
-const limit = `$limit=`
-let num = `10`
-
-let queryUrl = baseUrl + '?' + '$where=' + queryType + '>2' + '&' + limit + num
-
-
-const getLocations = () => {
-  $.ajax({
-    url: queryUrl
-  }).then((reportData) => {
-    // console.log(reportData);//works
-    for (let i = 0; i < reportData.length; i++) {
-      // console.log(reportData[i].location)//works location is {}
-      $('#map').append($(`<h1>Rack ${i}: ${reportData[i].location.latitude},${reportData[i].location.longitude}</h1>`))
-    }
-  })
+class API {
+  constructor (dataSetID, name) {
+    this.name = name;
+    this.baseURL = `https://data.cityofchicago.org/resource/`;
+    this.uniqueID = `${dataSetID}`;
+    // this.queryType = queryType;
+  }
+  limit (num) {
+    return `$limit=${num}`;
+  }
+  getAPIUrl () {
+    return this.baseURL + this.uniqueID + `.json`
+  }
+  getQueryUrl () {
+    return this.getAPIUrl() + '?' + this.limit(10);
+  }
+  getLocations () {
+    $.ajax({
+      url: this.getQueryUrl()
+    }).then((reportData) => {
+      // console.log(reportData);//works
+      $('#map').append(this.name)
+      for (let i = 0; i < reportData.length; i++) {
+        // console.log(reportData[i].location)//works location is {}
+        $('#map').append($(`<h1>Location ${i}: ${reportData[i].latitude},${reportData[i].longitude}</h1>`))
+      }
+    })
+  }
 }
 
-NEXT:
-  --CLEAN UP FUNCTIONALITY:
-  ADD BUTTONS THAT WILL GET LOCATIONS OF EACH AMMENITY AND USE THE SAME get locations function.
-  --ADD STYLING. 
+const bikeRacks = new API('cbyb-69xx', 'Bike Racks');
+const farmersMarkets = new API('3r5z-s68i', 'Farmer\'s Markets');
+const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
+
 
 $(() => {
   /////------------map
   // initMap()
 
+
   /////------location data
-  getLocations();
+  // getLocations();
+  // console.log(bikeRacks);//k, works
+  // console.log(bikeRacks.getAPIUrl());//works.
+  // console.log(bikeRacks.getQueryUrl());//works
+  // console.log(bikeRacks.getLocations());//works
+  // console.log(farmersMarkets.getLocations());//comes up as undefined??
+  // //     //both of these are coming up as undefined, but are appending the correct corrdinates.
+  //   console.log(greenRoofs.getLocations());
+
+
 })

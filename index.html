@@ -2,18 +2,35 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <script
-  src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-  crossorigin="anonymous"></script>
-    <script src="app.js" charset="utf-8"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtT4YmKK0WLBMN3Zo6F9cGbDRb_YswF18&callback=initMap"
-    async defer></script>
+    <title>Live Green Outdoors: Chicago</title>
+    <link rel="shortcut icon" type="image/png" href="bicycle-favicon.png"/>
+
+
+
+
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
   <div id="map"></div>
+
+  <script type="text/javascript">
+    let map;
+    function initMap () {
+      map = new google.maps.Map($('#map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    }
+  </script>
+
+  <script
+src="https://code.jquery.com/jquery-3.4.0.min.js"
+integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+crossorigin="anonymous"></script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnlaOdxZRIXBBiG1YuHxyyx_EADJxn67A&callback=initMap"></script>
+
+    <script src="app.js" charset="utf-8"></script>
 
   </body>
 </html>

@@ -1,4 +1,4 @@
-# ChicagoLiveGreenOutside
+# LiveGreenOutdoorsChicago
 Web based app to show users the location of open spaces, green roofs, farmer's markets, and bike racks in Chicago
 
 Uses API from Chicago's public data.
@@ -14,9 +14,20 @@ User can see locations pinned on a map, that can drag and zoom.
 
 -------------------------
 Querying API location data and visualizing it with Google.maps.
-  - Query items to get latitude/longitude.
+  - Classes used to standardize queries for each API.
+    - Classes have:
+      dataSetID => the part of the url unique to each API.
+      <!-- queryType => what we're querying.  --> not necessary
+
+  - Query items in city API to get latitude/longitude.
   - Load google map
-    - Add data points to map. 
+    - Add data points to map.
+
+Button functions:
+  - When clicked, get locations of button item named.
+
+Farmer's markets:
+  - Unique websites sometimes available.
 
 -------------------------
 Stretch Goals:
