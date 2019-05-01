@@ -23,10 +23,11 @@ Querying API location data and visualizing it with Google.maps.
   - Load google map
     - Vanilla javascript used with google.maps script.
     - Add data points to map.
+    - Data points can be clicked to adjust zoom and map center. 
 
 Button functions:
   - When clicked, get locations of button item named.
-  - A function takes a parameter of a class instance that is the specific API. 
+  - A function takes a parameter of a class instance that is the specific API.
 
 Farmer's markets:
   - Unique websites sometimes available.
@@ -39,3 +40,4 @@ Optimize for mobile.
 Add a background that scrolls city murals. Allow for users to find nearest mural.
 
 Allow users to get directions.
+  - Will require Google's directions API.

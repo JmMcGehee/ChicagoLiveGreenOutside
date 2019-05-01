@@ -41,6 +41,9 @@ const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 
 /////////////// -------------- Loading map.
 
+///------------ADD EVENT LISTENERS TO MARKERS
+///------------ZOOM MAP AND GET MARKERS BASED ON LOCATION
+
 let map;
 function initMap () {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -62,9 +65,10 @@ const setMarkers = (api) => {
         position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
         map: map
       })
-      // marker.on('click', (event) => {
-      //   console.log($event.target);
-      // })// not working
+      marker.addListener('click', function() {
+        map.setZoom(12);
+        map.setCenter(marker.getPosition());
+      });
     }
   })
 }
@@ -76,7 +80,15 @@ const resetMap = () => {
   });
 }
 
+const showTransit = () => {
+  let transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+}
 
+const showBikeLane = () => {
+  var bikeLayer = new google.maps.BicyclingLayer();
+  bikeLayer.setMap(map);
+}
 
 
 $(() => {
@@ -93,6 +105,12 @@ $(() => {
   })
   $('#reset').on('click', () => {
     resetMap();
+  })
+  $('#bike-paths').on('click', () => {
+    showBikeLane();
+  })
+  $('#transit').on('click', () => {
+    showTransit();
   })
   /////------location data
   // getLocations();

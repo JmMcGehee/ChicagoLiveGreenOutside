@@ -15,12 +15,13 @@ html, body {
 .buttons {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; 
 }
 
 button {
   font-size: 1.5em;
   border-radius: 10px;
-  line-height: 2em; 
+  line-height: 2em;
 }
 
 button:hover {
