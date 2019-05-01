@@ -61,18 +61,6 @@ $.ajax({
 }) //oh my fucking god! It works!
 
 
-// $.getJSON(bikeRacks.getQueryUrl(), (data, textStatus) => {
-//   $.each(data, (i, entry) => {
-//     let marker = new google.maps.Marker({
-//       position: new google.maps.LatLng(entry.location_1.coordinates[1], entry.location_2.coordinates[0]),
-//       map: map,
-//       title: location.name
-//     })
-//   });
-// });
-
-
-
 
 $(() => {
   // initMap();//looks like the callback needs to stay on the API script.
