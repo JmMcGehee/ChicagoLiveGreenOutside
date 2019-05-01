@@ -21,6 +21,7 @@ Querying API location data and visualizing it with Google.maps.
 
   - Query items in city API to get latitude/longitude.
   - Load google map
+    - Vanilla javascript used with google.maps script. 
     - Add data points to map.
 
 Button functions:

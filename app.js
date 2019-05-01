@@ -1,18 +1,7 @@
 console.log("LiveGreenOutdoorsChicago");
 
-/////////////// -------------- Loading map.
-// let map;
-// const initMap = () => {
-//   map = new google.maps.Map($('#map'), {
-//     center: {lat: -34.397, lng: 150.644},
-//     zoom: 8
-//   });
-// }
-
 
 ////////////////// ------------- Querying locations
-
-//   --ADD STYLING.
 
 class API {
   constructor (dataSetID, name) {
@@ -49,11 +38,43 @@ const farmersMarkets = new API('3r5z-s68i', 'Farmer\'s Markets');
 const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 
 
+/////////////// -------------- Loading map.
+
+let map;
+function initMap () {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat: 41.8339037, lng: -87.8720466},
+    zoom: 10
+  });
+}
+
+$.ajax({
+  url: bikeRacks.getQueryUrl()
+}).then((reportData) => {
+  for (let i = 0; i < reportData.length; i++) {
+    let marker = new google.maps.Marker({
+      position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+      map: map
+    })
+  }
+}) //oh my fucking god! It works!
+
+
+// $.getJSON(bikeRacks.getQueryUrl(), (data, textStatus) => {
+//   $.each(data, (i, entry) => {
+//     let marker = new google.maps.Marker({
+//       position: new google.maps.LatLng(entry.location_1.coordinates[1], entry.location_2.coordinates[0]),
+//       map: map,
+//       title: location.name
+//     })
+//   });
+// });
+
+
+
+
 $(() => {
-  /////------------map
-  // initMap()
-
-
+  // initMap();//looks like the callback needs to stay on the API script.
   /////------location data
   // getLocations();
   // console.log(bikeRacks);//k, works
