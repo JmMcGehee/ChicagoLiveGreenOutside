@@ -46,7 +46,7 @@ class FarmersMarketInfo extends API {
   }
   setMarkers () {
     map = new google.maps.Map(document.getElementById("map"), {
-      center: {lat: 41.8339037, lng: -87.8720466},
+      center: {lat: 41.871930, lng: -87.653404},
       zoom: 10
     });
     $.ajax({
@@ -67,9 +67,71 @@ class FarmersMarketInfo extends API {
   }
 }
 
-const bikeRacks = new API('cbyb-69xx', 'Bike Racks');
+class BikeRackInfo extends API {
+  getInfo (reportData) {
+    $('#info').empty();
+    $('#info').append(
+      `<p>${reportData.community_name}</br>
+      ${reportData.address}</p>`);
+  }
+  setMarkers () {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: {lat: 41.871930, lng: -87.653404},
+      zoom: 10
+    });
+    $.ajax({
+      url: this.getQueryUrl() //can I use 'this' or do i need to co back to having a parameter? see line 138//yes...
+    }).then((reportData) => {//I know I could DRY this by using a callback...but that's terrifying atm...
+      for (let i = 0; i < reportData.length; i++) {
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+          map: map
+        })
+        marker.addListener('click', function() {
+          map.setZoom(12);
+          map.setCenter(marker.getPosition());
+          bikeRacks.getInfo(reportData[i]);
+        });
+      }
+    })
+  }
+}
+
+class GreenRoofInfo extends API {
+  getInfo (reportData) {
+    $('#info').empty();
+    $('#info').append(
+      `<p>${reportData.house_number}
+      ${reportData.pre_dir}
+      ${reportData.street_name}</br>
+      </p><a href="${reportData.fact_sheet}">Fact Sheet</a>`)
+  }
+  setMarkers () {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: {lat: 41.871930, lng: -87.653404},
+      zoom: 10
+    });
+    $.ajax({
+      url: this.getQueryUrl() //can I use 'this' or do i need to co back to having a parameter? see line 138
+    }).then((reportData) => {
+      for (let i = 0; i < reportData.length; i++) {
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+          map: map
+        })
+        marker.addListener('click', function() {
+          map.setZoom(12);
+          map.setCenter(marker.getPosition());
+          greenRoofs.getInfo(reportData[i]);
+        });
+      }
+    })
+  }
+}
+
+const bikeRacks = new BikeRackInfo('cbyb-69xx', 'Bike Racks');
 const farmersMarkets = new FarmersMarketInfo('3r5z-s68i', 'Farmer\'s Markets');
-const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
+const greenRoofs = new GreenRoofInfo('tnn6-5k2t', 'Greenroofs')
 
 
 /////////////// -------------- Loading map.
@@ -83,7 +145,7 @@ const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 let map;
 function initMap () {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: {lat: 41.8339037, lng: -87.8720466},
+    center: {lat: 41.871930, lng: -87.653404},
     zoom: 10
   });
 }
@@ -133,10 +195,10 @@ $(() => {
   // initMap();//looks like the callback needs to stay on the API script.
   // setMarkers(bikeRacks)//works to call a marker function based on button clicked
   $('#bike-racks').on('click', () => {
-    setMarkers(bikeRacks);
+    bikeRacks.setMarkers();
   })
   $('#green-roofs').on('click', () => {
-    setMarkers(greenRoofs);
+    greenRoofs.setMarkers();
   })
   $('#farmers-markets').on('click', () => {
     farmersMarkets.setMarkers();
