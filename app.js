@@ -38,8 +38,11 @@ class FarmersMarketInfo extends API {
   getInfo (reportData) {
     $('#info').empty();
     $('#info').append(
-      `<p>${reportData.intersection}</br>
-      ${reportData.start_time} to ${reportData.end_time}</p>`)
+      `<p>${reportData.location}</br>
+      ${reportData.intersection}</br>
+      ${reportData.day}
+      ${reportData.start_time} to ${reportData.end_time}</br>
+      ${reportData.website}</p>`)
   }
   setMarkers () {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -72,6 +75,7 @@ const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 /////////////// -------------- Loading map.
 
 /////------> Make the setMarkers function extend the API class so that different info can be appended to the page.
+/// Can we get the map's current center?
 ///// ADD INFO POP-UPS
 ///// GET USER LOCATION
 
@@ -84,27 +88,27 @@ function initMap () {
   });
 }
 
-const setMarkers = (api) => {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: {lat: 41.8339037, lng: -87.8720466},
-    zoom: 10
-  });
-  $.ajax({
-    url: api.getQueryUrl()
-  }).then((reportData) => {
-    for (let i = 0; i < reportData.length; i++) {
-      let marker = new google.maps.Marker({
-        position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
-        map: map
-      })
-      marker.addListener('click', function() {
-        map.setZoom(12);
-        map.setCenter(marker.getPosition());
-        farmersMarkets.getInfo(reportData[i]);
-      });
-    }
-  })
-}
+// const setMarkers = (api) => {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: {lat: 41.8339037, lng: -87.8720466},
+//     zoom: 10
+//   });
+//   $.ajax({
+//     url: api.getQueryUrl()
+//   }).then((reportData) => {
+//     for (let i = 0; i < reportData.length; i++) {
+//       let marker = new google.maps.Marker({
+//         position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+//         map: map
+//       })
+//       marker.addListener('click', function() {
+//         map.setZoom(12);
+//         map.setCenter(marker.getPosition());
+//         farmersMarkets.getInfo(reportData[i]);
+//       });
+//     }
+//   })
+// }
 
 const resetMap = () => {
   $('#info').empty();
@@ -135,7 +139,7 @@ $(() => {
     setMarkers(greenRoofs);
   })
   $('#farmers-markets').on('click', () => {
-    setMarkers(farmersMarkets);
+    farmersMarkets.setMarkers();
   })
   $('#reset').on('click', () => {
     resetMap();
