@@ -23,7 +23,8 @@ Querying API location data and visualizing it with Google.maps.
   - Load google map
     - Vanilla javascript used with google.maps script.
     - Add data points to map.
-    - Data points can be clicked to adjust zoom and map center. 
+    - Data points can be clicked to adjust zoom and map center.
+    - Markers can display object info
 
 Button functions:
   - When clicked, get locations of button item named.

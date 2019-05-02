@@ -34,16 +34,47 @@ class API {
   }
 }
 
+class FarmersMarketInfo extends API {
+  getInfo (reportData) {
+    $('#info').empty();
+    $('#info').append(
+      `<p>${reportData.intersection}</br>
+      ${reportData.start_time} to ${reportData.end_time}</p>`)
+  }
+  setMarkers () {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: {lat: 41.8339037, lng: -87.8720466},
+      zoom: 10
+    });
+    $.ajax({
+      url: this.getQueryUrl() //can I use 'this' or do i need to co back to having a parameter? see line 138
+    }).then((reportData) => {
+      for (let i = 0; i < reportData.length; i++) {
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(reportData[i].latitude, reportData[i].longitude),
+          map: map
+        })
+        marker.addListener('click', function() {
+          map.setZoom(12);
+          map.setCenter(marker.getPosition());
+          farmersMarkets.getInfo(reportData[i]);
+        });
+      }
+    })
+  }
+}
+
 const bikeRacks = new API('cbyb-69xx', 'Bike Racks');
-const farmersMarkets = new API('3r5z-s68i', 'Farmer\'s Markets');
+const farmersMarkets = new FarmersMarketInfo('3r5z-s68i', 'Farmer\'s Markets');
 const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 
 
 /////////////// -------------- Loading map.
 
-///------------ADD EVENT LISTENERS TO MARKERS//done
-///------------ZOOM MAP AND GET MARKERS BASED ON LOCATION//
 /////------> Make the setMarkers function extend the API class so that different info can be appended to the page.
+///// ADD INFO POP-UPS
+///// GET USER LOCATION
+
 
 let map;
 function initMap () {
@@ -51,13 +82,6 @@ function initMap () {
     center: {lat: 41.8339037, lng: -87.8720466},
     zoom: 10
   });
-}
-
-const getInfo = (reportData) => {
-  $('#info').empty();
-  $('#info').append(
-    `<p>${reportData.intersection}</br>
-    ${reportData.start_time} to ${reportData.end_time}</p>`)
 }
 
 const setMarkers = (api) => {
@@ -76,13 +100,14 @@ const setMarkers = (api) => {
       marker.addListener('click', function() {
         map.setZoom(12);
         map.setCenter(marker.getPosition());
-        getInfo(reportData[i]);
+        farmersMarkets.getInfo(reportData[i]);
       });
     }
   })
 }
 
 const resetMap = () => {
+  $('#info').empty();
   map = new google.maps.Map(document.getElementById("map"), {
     center: {lat: 41.8339037, lng: -87.8720466},
     zoom: 10
