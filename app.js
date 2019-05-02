@@ -41,8 +41,9 @@ const greenRoofs = new API('tnn6-5k2t', 'Greenroofs')
 
 /////////////// -------------- Loading map.
 
-///------------ADD EVENT LISTENERS TO MARKERS
-///------------ZOOM MAP AND GET MARKERS BASED ON LOCATION
+///------------ADD EVENT LISTENERS TO MARKERS//done
+///------------ZOOM MAP AND GET MARKERS BASED ON LOCATION//
+/////------> Make the setMarkers function extend the API class so that different info can be appended to the page.
 
 let map;
 function initMap () {
@@ -50,6 +51,13 @@ function initMap () {
     center: {lat: 41.8339037, lng: -87.8720466},
     zoom: 10
   });
+}
+
+const getInfo = (reportData) => {
+  $('#info').empty();
+  $('#info').append(
+    `<p>${reportData.intersection}</br>
+    ${reportData.start_time} to ${reportData.end_time}</p>`)
 }
 
 const setMarkers = (api) => {
@@ -68,6 +76,7 @@ const setMarkers = (api) => {
       marker.addListener('click', function() {
         map.setZoom(12);
         map.setCenter(marker.getPosition());
+        getInfo(reportData[i]);
       });
     }
   })
