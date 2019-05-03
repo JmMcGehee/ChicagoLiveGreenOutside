@@ -42,3 +42,5 @@ Add a background that scrolls city murals. Allow for users to find nearest mural
 
 Allow users to get directions.
   - Will require Google's directions API.
+
+Allow users to add photos. 
