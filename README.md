@@ -5,6 +5,7 @@ Web based app to show users the location of **green roofs**, **farmer's markets*
 ## Resources Used:
 
 - [API from Chicago's public data portal:](https://data.cityofchicago.org/)
+- Google Maps API. 
 
 ## USER STORIES
 
