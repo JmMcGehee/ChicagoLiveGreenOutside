@@ -14,7 +14,7 @@ Web based app to show users the location of **green roofs**, **farmer's markets*
       - **Greenroof** markers have links that open **fact sheets** in another window.
 
 
-![Wireframe](Wireframe.png)
+![Wireframe](WireFrame.png)
 
 -------------------------
 Querying API location data and visualizing it with Google.maps.
