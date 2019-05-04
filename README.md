@@ -11,7 +11,7 @@ Web based app to show users the location of **green roofs**, **farmer's markets*
 -Users then can select from buttons to find the closest **Green Roof**, **Bike Rack**, **Farmers Market**.
     - User can see locations pinned on a map, that can drag and zoom.
     - User can click **marker** to get more info including *address* and **Farmer's Market day/time**.  
-      - **Greenroof** markers have links that open **fact sheets** in another window.
+      - [Greenroof markers have links that open fact sheets in another window.](https://www.thesitewizard.com/html-tutorial/open-links-in-new-window-or-tab.shtml)
 
 
 ![Wireframe](WireFrame.png)
@@ -50,7 +50,7 @@ Querying API location data and visualizing it with Google.maps.
     - Vanilla javascript used with google.maps script.
 
     - Query items in city API to get latitude/longitude.
-      - Add data points to map.
+      - [Add data points to map.](https://developers.google.com/maps/documentation/javascript/earthquakes)
     ```
     for (let i = 0; i < reportData.length; i++) {
       let marker = new google.maps.Marker({
@@ -58,7 +58,7 @@ Querying API location data and visualizing it with Google.maps.
         map: map
       })
     ```
-    - Data points can be clicked to adjust zoom and map center.
+    - [Data points can be clicked to adjust zoom and map center.](https://developers.google.com/maps/documentation/javascript/events)
     ```
     marker.addListener('click', function() {
       lastInfoWindow && lastInfoWindow.close();
@@ -72,7 +72,8 @@ Querying API location data and visualizing it with Google.maps.
         })
     ```
     - Markers can display object info
-      - Using Google's infoWindow() and open() functions.
+      - [Using Google's infoWindow() and open() functions.](https://developers.google.com/maps/documentation/javascript/infowindows)
+      - Warning: custom pop-ups are [hard](https://developers.google.com/maps/documentation/javascript/examples/overlay-popup)
       ```
       infoWindow.open(map,marker);
       ```
@@ -95,7 +96,7 @@ Allow users to get directions.
 
 Allow users to add photos.
 
-Add custom icons.
+[Add custom icons.](https://developers.google.com/maps/documentation/javascript/custom-markers)
 
 Add **openspace** data.
 
@@ -115,3 +116,7 @@ Add a background that scrolls city murals.
 ## Author
 
 **Joshua M. McGehee**
+
+## Acknowledgements
+
+**Chris Metcalf** from [Socrata](https://dev.socrata.com/blog/2014/05/31/google-maps.html)
