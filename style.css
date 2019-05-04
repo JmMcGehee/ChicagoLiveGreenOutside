@@ -6,6 +6,10 @@
   height: 75%;
 }
 
+body {
+  position: relative;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -15,7 +19,7 @@ html, body {
 .buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 button {
@@ -27,4 +31,8 @@ button {
 button:hover {
   background-color: green;
   color: white;
+}
+
+#info {
+  
 }
