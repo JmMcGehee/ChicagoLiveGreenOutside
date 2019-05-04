@@ -52,7 +52,6 @@ class FarmersMarketInfo extends API {
         })
         marker.addListener('click', function() {
           lastInfoWindow && lastInfoWindow.close();
-          map.setZoom(12);
           map.setCenter(marker.getPosition());
           const getInfo = () => {
             let infoWindow = new google.maps.InfoWindow({
@@ -90,7 +89,6 @@ class BikeRackInfo extends API {
         })
         marker.addListener('click', function() {
           lastInfoWindow && lastInfoWindow.close();
-          map.setZoom(14);
           map.setCenter(marker.getPosition());
           const getInfo = () => {
             let infoWindow = new google.maps.InfoWindow({
@@ -125,7 +123,6 @@ class GreenRoofInfo extends API {
         })
         marker.addListener('click', function() {
           lastInfoWindow && lastInfoWindow.close();
-          map.setZoom(14);
           map.setCenter(marker.getPosition());
           const getInfo = () => {
             let infoWindow = new google.maps.InfoWindow({
