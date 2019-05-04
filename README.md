@@ -5,7 +5,7 @@ Web based app to show users the location of **green roofs**, **farmer's markets*
 ## Resources Used:
 
 - [API from Chicago's public data portal:](https://data.cityofchicago.org/)
-- Google Maps API. 
+- Google Maps API.
 
 ## USER STORIES
 
@@ -31,11 +31,9 @@ Querying API location data and visualizing it with Google.maps.
       ```
       - Allows me to query 3 different API's by only changing the **datasetID**
       ```
-      class API {
-        constructor (dataSetID, name) {
-          this.name = name;
-          this.baseURL = `https://data.cityofchicago.org/resource/`;
-          this.uniqueID = `${dataSetID}`;
+      const bikeRacks = new BikeRackInfo('cbyb-69xx', 'Bike Racks');
+      const farmersMarkets = new FarmersMarketInfo('3r5z-s68i', 'Farmer\'s Markets');
+      const greenRoofs = new GreenRoofInfo('tnn6-5k2t', 'Greenroofs')
       ```
 
   - Load google map
