@@ -25,6 +25,7 @@ Querying API location data and visualizing it with Google.maps.
     - Add data points to map.
     - Data points can be clicked to adjust zoom and map center.
     - Markers can display object info
+      - Using Google's infoWindow() and open() functions.
 
 Button functions:
   - When clicked, get locations of button item named.
@@ -43,4 +44,21 @@ Add a background that scrolls city murals. Allow for users to find nearest mural
 Allow users to get directions.
   - Will require Google's directions API.
 
-Allow users to add photos. 
+Allow users to add photos.
+
+Preserve Map Zoom level during clicks. 
+
+------------------------
+
+// NEXT:
+// -popups close on second click....
+// -GREEN ROOF FACT SHEETS NEED TO OPEN IN NEW TAB
+// -CSS OPTIMIZE
+  // - MAPS IN IFRAME?
+  // - BUTTON LAYOUT?
+  // - ADD OSCILATING PHOTO BACKGROUNDS
+// -MAYBE GET USER LOCATION
+// -SECOND CLICK REMOVES TRANSIT OR BIKE PATHS
+// -MAYBE DRY
+// -GET HOSTING SET UP
+// -OPTIMIZE README WITH PHOTOS AND CODE

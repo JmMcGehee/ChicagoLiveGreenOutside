@@ -1,14 +1,9 @@
 console.log("LiveGreenOutdoorsChicago");
 
-// NEXT:
-// -GET POPUPS WORKING
-// -ADD OSCILATING PHOTO BACKGROUNDS
-// -MAYBE GET USER LOCATION
-// -SECOND CLICK REMOVES TRANSIT OR BIKE PATHS
-// -MAYBE DRY
-
 
 ////////////////// ------------- Querying locations
+
+let lastInfoWindow;
 
 class API {
   constructor (dataSetID, name) {
@@ -42,22 +37,13 @@ class API {
 }
 
 class FarmersMarketInfo extends API {
-  getInfo (reportData) {
-    $('#info').empty();
-    $('#info').append(
-      `<p>${reportData.location}</br>
-      ${reportData.intersection}</br>
-      ${reportData.day}
-      ${reportData.start_time} to ${reportData.end_time}</br>
-      ${reportData.website}</p>`)
-  }
   setMarkers () {
     map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 41.871930, lng: -87.653404},
       zoom: 10
     });
     $.ajax({
-      url: this.getQueryUrl() //can I use 'this' or do i need to co back to having a parameter? see line 138
+      url: this.getQueryUrl()
     }).then((reportData) => {
       for (let i = 0; i < reportData.length; i++) {
         let marker = new google.maps.Marker({
@@ -65,9 +51,23 @@ class FarmersMarketInfo extends API {
           map: map
         })
         marker.addListener('click', function() {
+          lastInfoWindow && lastInfoWindow.close();
           map.setZoom(12);
           map.setCenter(marker.getPosition());
-          farmersMarkets.getInfo(reportData[i]);
+          const getInfo = () => {
+            let infoWindow = new google.maps.InfoWindow({
+              content: `<p>${reportData[i].location}</br>
+                 ${reportData[i].intersection}</br>
+                 ${reportData[i].day}
+                 ${reportData[i].start_time} to ${reportData[i].end_time}</br>
+                 ${reportData[i].website}</p>`
+            })
+            infoWindow.open(map,marker);
+            setTimeout(() => {
+              lastInfoWindow = infoWindow;
+            }, 100);
+          };
+          getInfo();
         });
       }
     })
@@ -75,12 +75,6 @@ class FarmersMarketInfo extends API {
 }
 
 class BikeRackInfo extends API {
-  getInfo (reportData) {
-    $('#info').empty();
-    $('#info').append(
-      `<p>${reportData.community_name}</br>
-      ${reportData.address}</p>`);
-  }
   setMarkers () {
     map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 41.871930, lng: -87.653404},
@@ -95,9 +89,20 @@ class BikeRackInfo extends API {
           map: map
         })
         marker.addListener('click', function() {
-          map.setZoom(12);
+          lastInfoWindow && lastInfoWindow.close();
+          map.setZoom(14);
           map.setCenter(marker.getPosition());
-          bikeRacks.getInfo(reportData[i]);
+          const getInfo = () => {
+            let infoWindow = new google.maps.InfoWindow({
+              content: `<p>${reportData[i].community_name}</br>
+              ${reportData[i].address}</p>`
+            })
+            infoWindow.open(map,marker);
+            setTimeout(() => {
+              lastInfoWindow = infoWindow;
+            }, 100);
+          };
+          getInfo();
         });
       }
     })
@@ -105,14 +110,6 @@ class BikeRackInfo extends API {
 }
 
 class GreenRoofInfo extends API {
-  getInfo (reportData) {
-    $('#info').empty();
-    $('#info').append(
-      `<p>${reportData.house_number}
-      ${reportData.pre_dir}
-      ${reportData.street_name}</br>
-      </p><a href="${reportData.fact_sheet}">Fact Sheet</a>`)
-  }
   setMarkers () {
     map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 41.871930, lng: -87.653404},
@@ -127,9 +124,22 @@ class GreenRoofInfo extends API {
           map: map
         })
         marker.addListener('click', function() {
-          map.setZoom(12);
+          lastInfoWindow && lastInfoWindow.close();
+          map.setZoom(14);
           map.setCenter(marker.getPosition());
-          greenRoofs.getInfo(reportData[i]);
+          const getInfo = () => {
+            let infoWindow = new google.maps.InfoWindow({
+              content: `<p>${reportData[i].house_number}
+              ${reportData[i].pre_dir}
+              ${reportData[i].street_name}</br>
+              </p><a href="${reportData[i].fact_sheet}">Fact Sheet</a>`
+            })
+            infoWindow.open(map,marker);
+            setTimeout(() => {
+              lastInfoWindow = infoWindow;
+            }, 100);
+          };
+          getInfo();
         });
       }
     })
