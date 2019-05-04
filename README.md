@@ -8,7 +8,7 @@ Web based app to show users the location of **green roofs**, **farmer's markets*
 
 ## USER STORIES
 
--Users then can select from buttons to find the closest **Green Roof**, **Bike Rack**, **Farmers Market**.
+- Users then can select from buttons to find the closest **Green Roof**, **Bike Rack**, **Farmers Market**.
     - User can see locations pinned on a map, that can drag and zoom.
     - User can click **marker** to get more info including *address* and **Farmer's Market day/time**.  
       - [Greenroof markers have links that open fact sheets in another window.](https://www.thesitewizard.com/html-tutorial/open-links-in-new-window-or-tab.shtml)
