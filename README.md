@@ -12,6 +12,8 @@ User can see locations pinned on a map, that can drag and zoom.
 - Use API to show locations on map window.
 - CSS to have street level images of Chicago in background.
 
+![Wireframe] (Wireframe.png)
+
 -------------------------
 Querying API location data and visualizing it with Google.maps.
   - Classes used to standardize queries for each API.
@@ -37,8 +39,6 @@ Farmer's markets:
 -------------------------
 Stretch Goals:
 
-Optimize for mobile.
-
 Add a background that scrolls city murals. Allow for users to find nearest mural.
 
 Allow users to get directions.
@@ -46,13 +46,11 @@ Allow users to get directions.
 
 Allow users to add photos.
 
-Preserve Map Zoom level during clicks.
-
 ------------------------
 
 // NEXT:
-// -GREEN ROOF FACT SHEETS NEED TO OPEN IN NEW TAB
 // -CSS OPTIMIZE
+  // - buttons change color when clicked and stay that color until another button is selected.
   // - MAPS IN IFRAME?
   // - BUTTON LAYOUT?
   // - ADD OSCILATING PHOTO BACKGROUNDS

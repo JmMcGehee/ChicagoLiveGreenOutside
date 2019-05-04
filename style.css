@@ -3,11 +3,19 @@
 } */
 
 #map {
-  height: 75%;
+  height: 60%;
+  width: 75%;
+  margin: auto;
 }
 
 body {
   position: relative;
+  text-align: center;
+  background-image: url("https://images.unsplash.com/photo-1531001142232-7d7aac16a63e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+
 }
 
 html, body {
@@ -17,22 +25,55 @@ html, body {
 }
 
 .buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  text-align: center;
+  /* line-height: 2em; */
+  margin-top: 0;
+  padding-top: 1em;
+  background-color: rgba(0,0,0,0.5);
 }
 
-button {
-  font-size: 1.5em;
+#commuting {
+  text-align: center;
   border-radius: 10px;
-  line-height: 2em;
+  /* line-height: 2em; */
+  margin-top: 0;
+}
+
+
+.buttons h3 {
+  margin-bottom: 0;
+  color: #F3D4B2;
+  font-family: roboto, sans-serif;
+}
+.buttons p {
+  margin-top: 4px;
+  color: white;
+  font-family: roboto, sans-serif;
+  font-size: .7em;
+}
+
+.buttons h1 {
+  margin-top: 0;
+  color: #F3D4B2;
+  text-decoration: underline;
+}
+
+.buttons button {
+  font-size: 1.2em;
+  border-radius: 10px;
+  border-radius: 10px;
 }
 
 button:hover {
-  background-color: green;
-  color: white;
+  background-color: #CAECBA;
 }
 
-#info {
-  
+footer {
+  background-color: rgba(0,0,0,0.5);
+  padding: 2em;
+}
+
+footer h3 {
+  color: #FDECA2;
+  margin: 0;
 }
