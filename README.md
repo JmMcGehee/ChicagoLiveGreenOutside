@@ -46,12 +46,11 @@ Allow users to get directions.
 
 Allow users to add photos.
 
-Preserve Map Zoom level during clicks. 
+Preserve Map Zoom level during clicks.
 
 ------------------------
 
 // NEXT:
-// -popups close on second click....
 // -GREEN ROOF FACT SHEETS NEED TO OPEN IN NEW TAB
 // -CSS OPTIMIZE
   // - MAPS IN IFRAME?

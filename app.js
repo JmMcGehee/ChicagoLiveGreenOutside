@@ -129,7 +129,7 @@ class GreenRoofInfo extends API {
               content: `<p>${reportData[i].house_number}
               ${reportData[i].pre_dir}
               ${reportData[i].street_name}</br>
-              </p><a href="${reportData[i].fact_sheet}">Fact Sheet</a>`
+              </p><a href="${reportData[i].fact_sheet}" target="_blank">Fact Sheet</a>`
             })
             infoWindow.open(map,marker);
             setTimeout(() => {
